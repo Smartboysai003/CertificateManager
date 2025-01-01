@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"], input[type="file"], input[type="submit"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"], button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #45a049;
+        }
+        .instructions {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .idrbt {
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="images.jpeg" alt="IDRBT Logo">
+        </div>
+        <div class="idrbt">
+            Institute for Development and Research in Banking Technology
+        </div>
+        <h1>Certificate Manager</h1>
+
+        <!-- Generate CSR Section -->
+        <form action="/generate-csr" method="post" id="csrForm">
+            <h2>Generate CSR</h2>
+            <div class="form-group">
+                <label for="country">Country (C):</label>
+                <input type="text" id="country" name="country" placeholder="e.g., US" required>
+            </div>
+            <div class="form-group">
+                <label for="state">State (ST):</label>
+                <input type="text" id="state" name="state" placeholder="e.g., California" required>
+            </div>
+            <div class="form-group">
+                <label for="locality">Locality (L):</label>
+                <input type="text" id="locality" name="locality" placeholder="e.g., Los Angeles" required>
+            </div>
+            <div class="form-group">
+                <label for="organization">Organization (O):</label>
+                <input type="text" id="organization" name="organization" placeholder="e.g., Example Corp" required>
+            </div>
+            <div class="form-group">
+                <label for="organizationalUnit">Organizational Unit (OU):</label>
+                <input type="text" id="organizationalUnit" name="organizationalUnit" placeholder="e.g., IT">
+            </div>
+            <div class="form-group">
+                <label for="commonName">Common Name (CN):</label>
+                <input type="text" id="commonName" name="commonName" placeholder="e.g., www.example.com" required>
+            </div>
+            <input type="submit" value="Generate CSR">
+        </form>
+
+        <hr>
+
+        <!-- Convert PFX to CER Section -->
+        <form action="/convert-pfx" method="post" enctype="multipart/form-data">
+            <h2>Convert PFX to CER</h2>
+            <div class="form-group">
+                <label for="pfxFile">PFX File:</label>
+                <input type="file" id="pfxFile" name="pfxFile" required>
+            </div>
+            <div class="form-group">
+                <label for="pfxPassword">Password:</label>
+                <input type="text" id="pfxPassword" name="pfxPassword" placeholder="Enter PFX password" required>
+            </div>
+            <input type="submit" value="Convert to CER">
+        </form>
+
+        <hr>
+
+        <!-- Generate PFX Section -->
+        <form action="/generate-pfx" method="post" enctype="multipart/form-data">
+            <h2>Generate PFX</h2>
+            <div class="form-group">
+                <label for="privateKeyFile">Private Key File:</label>
+                <input type="file" id="privateKeyFile" name="privateKeyFile" required>
+            </div>
+            <div class="form-group">
+                <label for="certificateFile">Certificate File:</label>
+                <input type="file" id="certificateFile" name="certificateFile" required>
+            </div>
+            <div class="form-group">
+                <label for="pfxPassword">Password:</label>
+                <input type="text" id="pfxPassword" name="pfxPassword" placeholder="Set PFX password" required>
+            </div>
+            <input type="submit" value="Generate PFX">
+        </form>
+    </div>
+</body>
+</html>
