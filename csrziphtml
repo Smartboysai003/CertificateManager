@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKI Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="generate-csr-tab" data-bs-toggle="tab" href="#generate-csr" role="tab">Generate CSR</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="convert-pfx-tab" data-bs-toggle="tab" href="#convert-pfx" role="tab">Convert PFX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="generate-pfx-tab" data-bs-toggle="tab" href="#generate-pfx" role="tab">Generate PFX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="check-files-tab" data-bs-toggle="tab" href="#check-files" role="tab">Check Files</a>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+            <!-- Generate CSR Tab -->
+            <div id="generate-csr" class="tab-pane fade show active" role="tabpanel">
+                <form action="/generate-csr" method="POST">
+                    <!-- Form Fields Same as Before -->
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country (C)*</label>
+                        <input type="text" name="country" id="country" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State (ST)*</label>
+                        <input type="text" name="state" id="state" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="locality" class="form-label">Locality (L)*</label>
+                        <input type="text" name="locality" id="locality" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="organization" class="form-label">Organization (O)*</label>
+                        <input type="text" name="organization" id="organization" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="org_unit" class="form-label">Organizational Unit (OU)</label>
+                        <input type="text" name="org_unit" id="org_unit" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="common_name" class="form-label">Common Name (CN)*</label>
+                        <input type="text" name="common_name" id="common_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rsa_size" class="form-label">RSA Key Size*</label>
+                        <select name="rsa_size" id="rsa_size" class="form-select" required>
+                            <option value="2048">2048</option>
+                            <option value="3072">3072</option>
+                            <option value="4096">4096</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate CSR</button>
+                </form>
+            </div>
+
+            <!-- Convert PFX Tab -->
+            <div id="convert-pfx" class="tab-pane fade" role="tabpanel">
+                <form action="/convert-pfx" method="POST">
+                    <div class="mb-3">
+                        <label for="pfx_file" class="form-label">PFX File*</label>
+                        <input type="file" name="pfx_file" id="pfx_file" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pfx_password" class="form-label">PFX Password</label>
+                        <input type="password" name="pfx_password" id="pfx_password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Convert PFX</button>
+                </form>
+            </div>
+
+            <!-- Generate PFX Tab -->
+            <div id="generate-pfx" class="tab-pane fade" role="tabpanel">
+                <form action="/generate-pfx" method="POST">
+                    <div class="mb-3">
+                        <label for="cert_file" class="form-label">Certificate File*</label>
+                        <input type="file" name="cert_file" id="cert_file" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="key_file" class="form-label">Private Key File*</label>
+                        <input type="file" name="key_file" id="key_file" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pfx_password" class="form-label">PFX Password*</label>
+                        <input type="password" name="pfx_password" id="pfx_password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate PFX</button>
+                </form>
+            </div>
+
+            <!-- Check Files Tab -->
+            <div id="check-files" class="tab-pane fade" role="tabpanel">
+                <form action="/check-files" method="POST">
+                    <div class="mb-3">
+                        <label for="csr_file" class="form-label">CSR File*</label>
+                        <input type="file" name="csr_file" id="csr_file" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="key_file" class="form-label">Private Key File*</label>
+                        <input type="file" name="key_file" id="key_file" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cert_file" class="form-label">Certificate File*</label>
+                        <input type="file" name="cert_file" id="cert_file" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Check Files</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
